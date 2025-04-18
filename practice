@@ -1,0 +1,37 @@
+#Your code here
+
+import string  # Used to remove punctuation
+
+def compare_vocab(text1, text2):
+    #Convert to lowercase and remove punctuation
+    text1 = text1.lower().translate(str.maketrans('', '', string.punctuation))
+    text2 = text2.lower().translate(str.maketrans('', '', string.punctuation))
+
+    #Split sentences into sets of words
+    set1 = set(text1.split())
+    set2 = set(text2.split())
+
+    #Words in both texts
+    both = set1 & set2
+
+    #Words in only one of the texts
+    only_one = set1 ^ set2
+
+    #All unique words from both texts
+    either = set1 | set2
+
+    return both, only_one, either
+
+#Ask user to enter two sentences
+sentence1 = input("Enter the first sentence: ")
+sentence2 = input("Enter the second sentence: ")
+
+#Call the function
+both, only_one, either = compare_vocab(sentence1, sentence2)
+
+
+
+#Print the results
+print("\nWords in BOTH texts:", both)
+print("Words in ONLY ONE text:", only_one)
+print("Words in EITHER text:", either)
